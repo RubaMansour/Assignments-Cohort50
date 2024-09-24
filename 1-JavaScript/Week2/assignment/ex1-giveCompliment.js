@@ -1,13 +1,12 @@
 /* jshint esversion: 6 */
 export function giveCompliment(myName) {
-  const compliments = ['great', 'awesome', 'amazing', 'well', 'elegant', 'wonderful', 'good', 'perfect', 'very good', 'fantastic'];
+  const compliments = ['great','awesome','amazing','well','elegant','wonderful','good','perfect','very_good','fantastic'];
   const random = Math.floor(Math.random() * compliments.length);
   return `You are ${compliments[random]}, ${myName}!`;
 
 }
 
 function main() {
-  // TODO substitute your own name for "HackYourFuture"
   const myName = 'Ruba';
 
   console.log(giveCompliment(myName));
