@@ -1,0 +1,5 @@
+
+
+*** Spell Checker Report ***
+
+1-JavaScript/Week2/assignment/ex7-mindPrivacy.js:1:11 - Unknown word (esversion)
