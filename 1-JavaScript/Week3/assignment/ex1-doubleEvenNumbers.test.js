@@ -11,8 +11,8 @@ Let's rewrite it (or _refactor_ it, as experienced developers would call it):
 ------------------------------------------------------------------------------*/
 // ! Function to be tested
 function doubleEvenNumbers(numbers) {
-  const evenFilter = numbers.filter(element => element % 2 == 0);
-  const multi = evenFilter.map(ele => ele * 2);
+  const evenFilter = numbers.filter((element) => element % 2 == 0);
+  const multi = evenFilter.map((ele) => ele * 2);
   return multi;
   // const newNumbers = [];
   // for (let i = 0; i < numbers.length; i++) {
@@ -24,8 +24,8 @@ function doubleEvenNumbers(numbers) {
 }
 
 // ! Unit test (using Jest)
-describe("js-wk3-ex1-doubleEvenNumbers", () => {
-  test("doubleEvenNumbers should take the even numbers and double them", () => {
+describe('js-wk3-ex1-doubleEvenNumbers', () => {
+  test('doubleEvenNumbers should take the even numbers and double them', () => {
     const actual = doubleEvenNumbers([1, 2, 3, 4]);
     const expected = [4, 8];
     expect(actual).toEqual(expected);

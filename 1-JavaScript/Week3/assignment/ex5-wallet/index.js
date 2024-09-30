@@ -1,8 +1,8 @@
 // Based on an example from: Philipp Beau (@ze_german)
 
-const eurosFormatter = new Intl.NumberFormat("nl-NL", {
-  style: "currency",
-  currency: "EUR",
+const eurosFormatter = new Intl.NumberFormat('nl-NL', {
+  style: 'currency',
+  currency: 'EUR',
 });
 
 function createWallet(name, cash = 0) {
@@ -45,9 +45,9 @@ function createWallet(name, cash = 0) {
   };
 }
 
-const walletJack = createWallet("Jack", 100);
-const walletJoe = createWallet("Joe", 10);
-const walletJane = createWallet("Jane", 20);
+const walletJack = createWallet('Jack', 100);
+const walletJoe = createWallet('Joe', 10);
+const walletJane = createWallet('Jane', 20);
 
 walletJack.transferInto(walletJoe, 50);
 walletJane.transferInto(walletJoe, 25);

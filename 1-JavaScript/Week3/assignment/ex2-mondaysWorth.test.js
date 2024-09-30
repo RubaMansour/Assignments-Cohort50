@@ -11,19 +11,19 @@ Full description atL https://github.com/HackYourFuture/Assignments/tree/main/1-J
 ------------------------------------------------------------------------------*/
 const mondayTasks = [
   {
-    name: "Daily standup",
+    name: 'Daily standup',
     duration: 30, // specified in minutes
   },
   {
-    name: "Feature discussion",
+    name: 'Feature discussion',
     duration: 120,
   },
   {
-    name: "Development time",
+    name: 'Development time',
     duration: 240,
   },
   {
-    name: "Talk to different members from the product team",
+    name: 'Talk to different members from the product team',
     duration: 60,
   },
 ];
@@ -32,23 +32,23 @@ const hourlyRate = 25;
 
 function computeEarnings(mondayTasks, hourlyRate) {
   const duration = mondayTasks.map(
-    element => (element.duration / 60) * hourlyRate
+    (element) => (element.duration / 60) * hourlyRate
   );
   const result = duration.reduce((acc, ind) => acc + ind);
   return `€${result.toFixed(2)}`;
 }
 
 // ! Unit tests (using Jest)
-describe("js-wk3-mondaysWorth", () => {
-  test("computeEarnings should take two parameters", () => {
+describe('js-wk3-mondaysWorth', () => {
+  test('computeEarnings should take two parameters', () => {
     // The `.length` property indicates the number of parameters expected by
     // the function.
     expect(computeEarnings).toHaveLength(2);
   });
 
-  test("computeEarnings should compute the earnings as a formatted Euro amount", () => {
+  test('computeEarnings should compute the earnings as a formatted Euro amount', () => {
     const result = computeEarnings(mondayTasks, hourlyRate);
-    const expected = "€187.50";
+    const expected = '€187.50';
     expect(result).toBe(expected);
   });
 });
