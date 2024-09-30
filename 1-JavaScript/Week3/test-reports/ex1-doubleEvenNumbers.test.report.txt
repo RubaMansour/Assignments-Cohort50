@@ -2,10 +2,10 @@
 
  PASS  1-JavaScript/Week3/assignment/ex1-doubleEvenNumbers.test.js
   js-wk3-ex1-doubleEvenNumbers
-    ✅ doubleEvenNumbers should take the even numbers and double them (3 ms)
+    ✅ doubleEvenNumbers should take the even numbers and double them (5 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       1 passed, 1 total
 Snapshots:   0 total
-Time:        1.001 s
+Time:        1.741 s
 Ran all test suites matching /C:\\Users\\hp\\Desktop\\Assignments-Cohort50\\1-JavaScript\\Week3\\assignment\\ex1-doubleEvenNumbers.test.js/i.
