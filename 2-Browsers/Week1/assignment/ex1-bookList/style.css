@@ -1,1 +1,17 @@
-/* Write your style here */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+li {
+  display: inline-block;
+  width: 450px;
+  margin: 10px;
+  padding: 10px;
+}
+li img {
+  margin-left: 30px;
+}
+p {
+  text-align: center;
+}

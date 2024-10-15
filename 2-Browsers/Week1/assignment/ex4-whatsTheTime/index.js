@@ -6,8 +6,42 @@ Full description at: https://github.com/HackYourFuture/Assignments/tree/main/2-B
   second). Use `setInterval()` to make sure the time stays current.
 2. Have the function execute when it's loading in the browser.
 ------------------------------------------------------------------------------*/
-function addCurrentTime() {
-  // TODO complete this function
-}
+const timeContainer = document.createElement('div');
+timeContainer.id = 'time-container';
 
-// TODO execute `addCurrentTime` when the browser has completed loading the page
+const hourElement = document.createElement('span');
+const minuteElement = document.createElement('span');
+const secondElement = document.createElement('span');
+
+hourElement.id = 'hour';
+minuteElement.id = 'minute';
+secondElement.id = 'second';
+
+hourElement.textContent = '00';
+minuteElement.textContent = '00';
+secondElement.textContent = '00';
+
+const colon1 = document.createElement('span');
+colon1.textContent = ':';
+const colon2 = document.createElement('span');
+colon2.textContent = ':';
+
+timeContainer.appendChild(hourElement);
+timeContainer.appendChild(colon1);
+timeContainer.appendChild(minuteElement);
+timeContainer.appendChild(colon2);
+timeContainer.appendChild(secondElement);
+
+document.body.appendChild(timeContainer);
+
+function addCurrentTime() {
+  let currentTime = new Date();
+  hourElement.innerHTML =
+    (currentTime.getHours() < 10 ? '0' : '') + currentTime.getHours();
+  minuteElement.innerHTML =
+    (currentTime.getMinutes() < 10 ? '0' : '') + currentTime.getMinutes();
+  secondElement.innerHTML =
+    (currentTime.getSeconds() < 10 ? '0' : '') + currentTime.getSeconds();
+}
+setInterval(addCurrentTime, 1000);
+window.addEventListener('load', addCurrentTime);
