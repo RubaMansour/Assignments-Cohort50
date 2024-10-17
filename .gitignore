@@ -123,3 +123,4 @@ dist
 .disclaimer
 @assignment*
 .dist/
+.vscode/settings.json
