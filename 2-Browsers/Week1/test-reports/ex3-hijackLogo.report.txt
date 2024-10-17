@@ -2,12 +2,12 @@
 
  PASS  .dist/2-Browsers/Week1/unit-tests/ex3-hijackLogo.test.js
   br-wk1-ex3-hijackLogo
-    ✅ should have all TODO comments removed (2 ms)
-    ✅ should set the `src` property (1 ms)
+    ✅ should have all TODO comments removed (7 ms)
+    ✅ should set the `src` property
     ✅ should set the `srcset` property
 
 Test Suites: 1 passed, 1 total
 Tests:       3 passed, 3 total
 Snapshots:   0 total
-Time:        0.864 s, estimated 1 s
+Time:        0.899 s, estimated 1 s
 Ran all test suites matching /C:\\Users\\hp\\Desktop\\Assignments-Cohort50\\.dist\\2-Browsers\\Week1\\unit-tests\\ex3-hijackLogo.test.js/i.

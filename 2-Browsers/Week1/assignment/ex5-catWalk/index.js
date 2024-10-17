@@ -28,26 +28,28 @@ const dancingImage =
 let catPosition = 0;
 let catSpeed = 10;
 const pageWidth = window.innerWidth;
+let walkingInterval = setInterval(catWalk, 50);
 
 function catWalk() {
   catPosition += catSpeed;
   cat.style.left = catPosition + 'px';
+  const middlePosition = pageWidth / 2 - cat.offsetWidth / 2;
 
-  if (
-    catPosition >= pageWidth / 2 - cat.offsetWidth / 2 &&
-    catPosition <= pageWidth / 2 + cat.offsetWidth / 2
-  ) {
+  if (catPosition >= middlePosition && catPosition <= middlePosition + 10) {
+    clearInterval(walkingInterval);
     cat.src = dancingImage;
     setTimeout(() => {
       cat.src = walkingImage;
+      walkingInterval = setInterval(catWalk, 50);
     }, 5000);
   }
 
-  if (catPosition >= pageWidth) {
-    catSpeed *= -1;
+  if (catPosition >= pageWidth - cat.offsetWidth) {
+    catPosition = 0;
   }
 }
 
 window.addEventListener('load', function () {
-  setInterval(catWalk, 50);
+  cat.style.position = 'absolute';
+  cat.style.left = '0px';
 });
