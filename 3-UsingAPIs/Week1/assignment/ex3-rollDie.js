@@ -64,3 +64,7 @@ function main() {
 if (process.env.NODE_ENV !== 'test') {
   main();
 }
+/*  
+Since using Promises provides a more organized way to handle the result of the function with then() and catch(),
+ issues related to deeply nested callbacks (callback hell) are less noticeable and easier to track.
+  The control provided by Promises makes the code cleaner and makes it easier to understand and handle errors   */
