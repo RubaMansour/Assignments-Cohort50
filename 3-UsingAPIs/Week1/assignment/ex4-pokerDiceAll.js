@@ -24,12 +24,12 @@ exercise file.
 
 // The line below makes the rollDie() function available to this file.
 // Do not change or remove it.
-const rollDie = require('../../helpers/pokerDiceRoller');
+const rollDie = require('../../helpers/pokerDiceRoller').rollDie;
 
 export function rollDice() {
-  // TODO Refactor this function
   const dice = [1, 2, 3, 4, 5];
-  return rollDie(1);
+  const promises = dice.map((promise) => rollDie(promise));
+  return Promise.all(promises);
 }
 
 function main() {
@@ -42,3 +42,9 @@ function main() {
 if (process.env.NODE_ENV !== 'test') {
   main();
 }
+/*  The rollDie() function is an asynchronous function that rolls dice in a non-blocking way.
+ If one of the dice fails (rejects), 
+ the other dice continue rolling because each die operates independently and keeps running.
+This is because JavaScript supports asynchronous programming, 
+which allows us to run multiple tasks at the same time without waiting. 
+So, if one task fails, it does not affect the other tasks. */
