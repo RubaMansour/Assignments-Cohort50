@@ -43,14 +43,6 @@ export function rollDie() {
 }
 
 function main() {
-  // rollDie((error, value) => {
-  //   if (error !== null) {
-  //     console.log(error.message);
-  //   } else {
-  //     console.log(`Success! Die settled on ${value}.`);
-  //   }
-  // });
-
   rollDie()
     .then((value) => {
       console.log(`Success! Die settled on ${value}.`);
@@ -65,6 +57,7 @@ if (process.env.NODE_ENV !== 'test') {
   main();
 }
 /*  
-Since using Promises provides a more organized way to handle the result of the function with then() and catch(),
- issues related to deeply nested callbacks (callback hell) are less noticeable and easier to track.
-  The control provided by Promises makes the code cleaner and makes it easier to understand and handle errors   */
+The key point is that the outcome of a promise, once settled, cannot be changed.
+ So calling resolve() on a promise that was called previously with reject() does not cause the rejected promise to become resolved. 
+ In effect, once settled, a promise becomes immutable.
+In the case of a callback, we do see the outcome being changed because there is no such immutability.  */

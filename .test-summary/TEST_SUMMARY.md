@@ -10,4 +10,4 @@
 | ex2-checkDoubleDigits |   11   |   -    |   ✓    |
 | ex3-rollDie           |   7    |   -    |   ✓    |
 | ex4-pokerDiceAll      |   7    |   -    |   ✓    |
-| ex5-pokerDiceChain    |   5    |   -    |   ✓    |
+| ex5-pokerDiceChain    |   2    |   3    |   ✓    |
