@@ -19,18 +19,15 @@ import { rollDie } from '../../helpers/pokerDiceRoller.js';
  */
 export async function rollDieUntil(desiredValue) {
   while (true) {
-    let value = await rollDie();
-    if (value === desiredValue) {
-      return value;
+    try {
+      const value = await rollDie();
+      if (value === desiredValue) {
+        return value;
+      }
+    } catch (error) {
+      throw new Error('error!');
     }
   }
-
-  /* return rollDie().then((value) => {
-    if (value !== desiredValue) {
-      return rollDieUntil(desiredValue);
-    }
-    return value;
-  }); */
 }
 
 async function main() {
@@ -40,10 +37,6 @@ async function main() {
   } catch (error) {
     console.log('Rejected!', error.message);
   }
-
-  /* rollDieUntil('ACE')
-    .then((results) => console.log('Resolved!', results))
-    .catch((error) => console.log('Rejected!', error.message)); */
 }
 
 // ! Do not change or remove the code below

@@ -96,7 +96,6 @@ async function fetchAndPopulatePokemons(query) {
     clearResults();
   }
 }
-
 function fetchImage(sprites) {
   const frontSprite = document.getElementById('sprite');
   if (sprites.front_default) {

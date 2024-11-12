@@ -17,17 +17,12 @@ export function rollDice() {
   const dice = [1, 2, 3, 4, 5];
   const diePromise = dice.map((die) => rollDie(die));
   return Promise.race(diePromise);
-
-  /*   rollDie(1); */
 }
 
 // Refactor this function to use async/await and try/catch
 async function main() {
-  /* rollDice()
-    .then((results) => console.log('Resolved!', results))
-    .catch((error) => console.log('Rejected!', error.message)); */
   try {
-    const result = await rollDieUntil('ACE');
+    const result = await rollDice();
     console.log('Resolved!', result);
   } catch (error) {
     console.log('Rejected!', error.message);
@@ -38,3 +33,10 @@ async function main() {
 if (process.env.NODE_ENV !== 'test') {
   main();
 }
+/*
+After `Promise.race()` resolves, some dice continue rolling because Promise.race()
+returns only the first resolved or rejected promise from the array, allowing 
+the other promises to continue executing. These other dice rolls do not stop 
+even though we are no longer awaiting them, so they may continue to execute 
+in the background, potentially completing after `Promise.race()` has already returned.
+*/

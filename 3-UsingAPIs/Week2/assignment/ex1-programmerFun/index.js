@@ -45,17 +45,9 @@ function renderError(error) {
 }
 
 async function main() {
-  /* requestData('https://xkcd.now.sh/?comic=latest')
-    .then((data) => {
-      renderImage(data);
-    })
-    .catch((error) => {
-      renderError(error);
-    }); */
-
   try {
     const data = await requestData('https://xkcd.now.sh/?comic=latest');
-    renderResults(data);
+    renderImage(data);
   } catch (error) {
     renderError(error);
   }
