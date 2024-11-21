@@ -19,13 +19,9 @@ import { rollDie } from '../../helpers/pokerDiceRoller.js';
  */
 export async function rollDieUntil(desiredValue) {
   while (true) {
-    try {
-      const value = await rollDie();
-      if (value === desiredValue) {
-        return value;
-      }
-    } catch (error) {
-      throw new Error('error!');
+    const value = await rollDie();
+    if (value === desiredValue) {
+      return value;
     }
   }
 }

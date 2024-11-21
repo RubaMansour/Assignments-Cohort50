@@ -1,15 +1,15 @@
 *** Unit Test Error Report ***
 
- PASS  .dist/3-UsingAPIs/Week2/unit-tests/ex1-programmerFun.test.js
+ PASS  .dist/3-UsingAPIs/Week2/unit-tests/ex1-programmerFun.test.js (19.295 s)
   api-wk2-ex1-programmerFun
-    ✅ HTML should be syntactically valid (207 ms)
+    ✅ HTML should be syntactically valid (225 ms)
     ✅ should have all TODO comments removed (1 ms)
     ✅ should use `fetch()`
-    ✅ should use async/wait (1 ms)
+    ✅ should use async/wait
     ✅ should use try/catch
 
 Test Suites: 1 passed, 1 total
 Tests:       5 passed, 5 total
 Snapshots:   0 total
-Time:        4.963 s, estimated 5 s
+Time:        20.166 s
 Ran all test suites matching /C:\\Users\\hp\\Desktop\\Assignments-Cohort50\\.dist\\3-UsingAPIs\\Week2\\unit-tests\\ex1-programmerFun.test.js/i.

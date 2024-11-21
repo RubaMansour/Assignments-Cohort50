@@ -4,15 +4,11 @@ Full description at: https://github.com/HackYourFuture/Assignments/blob/main/3-U
 Use the VSCode Debugger to fix the bugs
 --------------------------------------------------------------- --------------*/
 async function getData(url) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('HTTP Error: ' + response.status);
-    }
-    return await response.json();
-  } catch (error) {
-    console.log('Network Error: ' + error.message);
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error('HTTP Error: ' + response.status);
   }
+  return await response.json();
 }
 
 function renderLaureate({ knownName, birth, death }) {

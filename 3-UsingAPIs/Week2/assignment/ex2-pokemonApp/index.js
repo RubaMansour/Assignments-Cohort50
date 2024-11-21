@@ -21,114 +21,87 @@ Use async/await and try/catch to handle promises.
 Try and avoid using global variables. As much as possible, try and use function 
 parameters and return values to pass data back and forth.
 ------------------------------------------------------------------------------*/
-function createAppStructure() {
-  const app = document.createElement('div');
-  app.className = 'container';
-
-  const title = document.createElement('h1');
-  title.textContent = 'Pokémon App';
-
-  const inputContainer = document.createElement('div');
-  inputContainer.className = 'input-container';
-
-  const input = document.createElement('input');
-  input.id = 'search-input';
-  input.type = 'text';
-  input.placeholder = 'Enter Pokémon name or ID';
-
-  const button = document.createElement('button');
-  button.id = 'search-button';
-  button.textContent = 'Search';
-
-  inputContainer.append(input, button);
-
-  const pokemonBox = document.createElement('div');
-  pokemonBox.id = 'pokemon-box';
-
-  const pokemonName = document.createElement('h2');
-  pokemonName.id = 'pokemon-name';
-
-  const imgDiv = document.createElement('div');
-  imgDiv.id = 'img-div';
-
-  const sprite = document.createElement('img');
-  sprite.id = 'sprite';
-  sprite.src = '';
-  sprite.alt = 'Front sprite';
-
-  const sprite2 = document.createElement('img');
-  sprite2.id = 'sprite2';
-  sprite2.src = '';
-  sprite2.alt = 'Back sprite';
-
-  imgDiv.append(sprite, sprite2);
-  pokemonBox.append(pokemonName, imgDiv);
-
-  app.append(title, inputContainer, pokemonBox);
-  document.body.appendChild(app);
-}
-
 async function fetchData(url) {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error('Error: Pokémon not found');
+      throw new Error(`HTTP ${response.status}`);
     }
-    return await response.json();
+    const data = await response.json();
+    return data;
   } catch (error) {
-    console.error(`Error fetching data: ${error.message}`);
-    alert(error.message);
-    clearResults();
+    console.error('Error fetching data:', error);
+    throw error;
   }
 }
 
-async function fetchAndPopulatePokemons(query) {
-  if (!query) {
-    alert('Please enter a Pokémon name or ID');
-    return;
-  }
+async function fetchAndPopulatePokemons(selectElement, nameElement) {
   try {
-    const data = await fetchData(`https://pokeapi.co/api/v2/pokemon/${query}`);
-    document.getElementById('pokemon-name').textContent =
-      data.name.toUpperCase();
-    fetchImage(data.sprites);
+    const data = await fetchData('https://pokeapi.co/api/v2/pokemon?limit=151');
+    const pokemonsData = data.results;
+
+    selectElement.innerHTML = '';
+
+    pokemonsData.forEach((pokemon) => {
+      const option = document.createElement('option');
+      option.value = pokemon.url;
+      option.textContent =
+        pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+      selectElement.appendChild(option);
+    });
+
+    selectElement.style.display = 'block';
+    selectElement.style.width = '250px';
+
+    selectElement.addEventListener('change', (event) => {
+      const selectedPokemonUrl = event.target.value;
+
+      nameElement.textContent =
+        event.target.options[event.target.selectedIndex].text;
+      nameElement.style.display = 'inline';
+      fetchImage(selectedPokemonUrl);
+    });
   } catch (error) {
-    clearResults();
-  }
-}
-function fetchImage(sprites) {
-  const frontSprite = document.getElementById('sprite');
-  if (sprites.front_default) {
-    frontSprite.src = sprites.front_default;
-    frontSprite.style.display = 'block';
-  } else {
-    frontSprite.style.display = 'none';
-  }
-
-  const backSprite = document.getElementById('sprite2');
-  if (sprites.back_default) {
-    backSprite.src = sprites.back_default;
-    backSprite.style.display = 'block';
-  } else {
-    backSprite.style.display = 'none';
+    console.error('Error populating Pokemon list:', error);
   }
 }
 
-function clearResults() {
-  document.getElementById('pokemon-name').textContent = '';
-  document.getElementById('sprite').style.display = 'none';
-  document.getElementById('sprite2').style.display = 'none';
+async function fetchImage(pokemonUrl) {
+  const imageElement = document.querySelector('#pokemon-image');
+  try {
+    const pokemonData = await fetchData(pokemonUrl);
+    const frontSprite = pokemonData.sprites.front_default;
+
+    if (frontSprite) {
+      imageElement.src = frontSprite;
+      imageElement.alt = pokemonData.name;
+      imageElement.style.display = 'block';
+    } else {
+      imageElement.style.display = 'none';
+    }
+  } catch (error) {
+    console.error('Error fetching image:', error);
+  }
 }
 
-function main() {
-  createAppStructure();
-  document.getElementById('search-button').addEventListener('click', () => {
-    const query = document
-      .getElementById('search-input')
-      .value.trim()
-      .toLowerCase();
-    fetchAndPopulatePokemons(query);
+async function main() {
+  const body = document.querySelector('body');
+  body.innerHTML = String.raw`
+    <div id="container">
+      <button id="get-pokemon">Get Pokémon</button>
+      <select id="pokemons-list" style="width: 50px;"></select>
+      <span id="pokemon-name" style="display: none;"></span> 
+      <img id="pokemon-image" style="display: none;" />
+    </div>`;
+
+  const selectElement = document.querySelector('#pokemons-list');
+  const nameElement = document.querySelector('#pokemon-name');
+  const getPokemonBtn = document.querySelector('#get-pokemon');
+  getPokemonBtn.addEventListener('click', () => {
+    fetchAndPopulatePokemons(selectElement, nameElement);
   });
+
+  selectElement.style.display = 'block';
 }
 
 window.addEventListener('load', main);
